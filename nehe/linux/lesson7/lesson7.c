@@ -56,8 +56,8 @@ GLuint	texture[3];		/* Storage for 3 textures. */
 
 /* Image type - contains height, width, and data */
 struct Image {
-    unsigned long sizeX;
-    unsigned long sizeY;
+    unsigned int sizeX;
+    unsigned int sizeY;
     char *data;
 };
 typedef struct Image Image;
@@ -88,14 +88,14 @@ int ImageLoad(char *filename, Image *image) {
 	printf("Error reading width from %s.\n", filename);
 	return 0;
     }
-    printf("Width of %s: %lu\n", filename, image->sizeX);
+    printf("Width of %s: %u\n", filename, image->sizeX);
     
     // read the height 
     if ((i = fread(&image->sizeY, 4, 1, file)) != 1) {
 	printf("Error reading height from %s.\n", filename);
 	return 0;
     }
-    printf("Height of %s: %lu\n", filename, image->sizeY);
+    printf("Height of %s: %u\n", filename, image->sizeY);
     
     // calculate the size (assuming 24 bits or 3 bytes per pixel).
     size = image->sizeX * image->sizeY * 3;
